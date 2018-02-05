@@ -30,28 +30,26 @@ export class SignupPage {
     this.submitted = true;
       
     if (form.valid) {
-      try{ 
+      try{
+        let toast = this.toastCtrl.create({
+          message: 'Error Signing Up',
+          duration: 3000
+        }); 
         this.afAuth.auth.createUserWithEmailAndPassword(this.signup.username,this.signup.password).then(
           ()=>{
             this.userData.signup(this.signup.username);
-            this.navCtrl.push(TabsPage);
+            this.navCtrl.push(TabsPage);            
           }).catch(function showError() {
-
-            console.log("Error!!!!");
-
-            // const toast = this.toastCtrl.create({
-            //   message: 'Sessions have been updated.',
-            //   duration: 3000
-            // });
-            // toast.present();
-            
-
-         
+             toast.present();
           });
       }
       catch(error)
       {
-        console.log(error);
+        let toast = this.toastCtrl.create({
+          message: 'Please Check Your Creds',
+          duration: 3000
+        }); 
+        toast.present();
       }  
       
     }
