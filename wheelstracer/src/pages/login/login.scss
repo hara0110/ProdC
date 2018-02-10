@@ -2,56 +2,100 @@
 // Login, Signup, Support
 
 page-user {
- 
-  .login-content {
-    background: rgb(233, 233, 233);
- 
-    .logo-row {
-      padding-top: 50px;
-      padding-bottom: 20px;
-    }
- 
-    .login-box {
-      background: rgb(184, 241, 170);
-      padding: 20px 20px 0px 20px;
-      margin-top: 30px;
-    }
- 
-    ion-row {
-       align-items: center;
-       text-align: center;
-     }
- 
-     ion-item {
-         border-radius: 30px !important;
-         padding-left: 30px !important;
-         font-size: 0.9em;
-         margin-bottom: 2px;
-         border: 1px solid #ffffff;
-         border-bottom: 0px !important;
-         box-shadow: 0.5cm !important;
-     }
- 
-     .signup-col {
-       margin: 0px 16px 0px 16px;
-       padding-bottom: 20px;
-     }
- 
-     .item-inner {
-       border-bottom-color: #ffffff !important;
-       box-shadow: none !important;
-     }
- 
-     .submit-btn {
-       background: rgb(0, 171, 223);
-       border-radius: 30px !important;
-       border: 1px solid #4652ff;
-     }
- 
-     .register-btn {
-       color: #ffffff;
-       font-size: 0.8em;
-     }
+
+  .toolbar-background {
+    // background: transparent;
+    // border-color: transparent;
   }
+
+  .slide-zoom {
+    height: 100%;
+  }
+
+  .slide-title {
+    margin-top: 2.8rem;
+  }
+
+  .slide-image {
+    max-height: 50%;
+    max-width: 60%;
+    margin: 36px 0;
+  }
+
+  b {
+    font-weight: 500;
+  }
+
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #60646B;
+
+    b {
+      color: #000000;
+    }
+  }
+}
+  // .login-content {
+  //   background: rgb(233, 233, 233);
+ 
+  //   .logo-row {
+  //     padding-top: 50px;
+  //     padding-bottom: 20px;
+  //   }
+ 
+  //   .login-box {
+  //     background: rgb(184, 241, 170);
+  //     padding: 20px 20px 0px 20px;
+  //     margin-top: 30px;
+  //   }
+ 
+  //   ion-row {
+  //      align-items: center;
+  //      text-align: center;
+  //    }
+ 
+  //    ion-item {
+  //        border-radius: 30px !important;
+  //        padding-left: 30px !important;
+  //        font-size: 0.9em;
+  //        margin-bottom: 2px;
+  //        border: 1px solid #ffffff;
+  //        border-bottom: 0px !important;
+  //        box-shadow: 0.5cm !important;
+  //    }
+ 
+  //    .signup-col {
+  //      margin: 0px 16px 0px 16px;
+  //      padding-bottom: 20px;
+  //    }
+ 
+  //    .item-inner {
+  //      border-bottom-color: #ffffff !important;
+  //      box-shadow: none !important;
+  //    }
+ 
+  //    .submit-btn {
+  //      background: rgb(0, 171, 223);
+  //      border-radius: 30px !important;
+  //      border: 1px solid #4652ff;
+  //    }
+ 
+  //    .register-btn {
+  //      color: #ffffff;
+  //      font-size: 0.8em;
+  //    }
+
+  //    .slide-image {
+  //     max-height: 50%;
+  //     max-width: 60%;
+  //     margin: 36px 0;
+  //   }
+ // }
+
+  
+  
+  
    
-  }
+

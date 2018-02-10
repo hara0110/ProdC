@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import {  MenuController  } from 'ionic-angular';
-import { AlertController, NavController, ToastController } from 'ionic-angular';
+import { AlertController, NavController, ToastController,LoadingController } from 'ionic-angular';
 import { UserData } from '../../providers/user-data';
 import { UserOptions } from '../../interfaces/user-options';
 //import { TabsPage } from '../tabs-page/tabs-page';
@@ -38,30 +38,18 @@ export class LoginPage {
               public plt: Platform,
               public authServe:AuthService,
               public menu : MenuController,
-             
+              public loadingCtrl: LoadingController,             
   ) { 
     this.navCtrl = navCtrl;
     this.userData = userData;
     this.submitted = false;    
     this.menu = menu;
   }
-
-  // onPageDidEnter() {
-  //   // the left menu should be disabled on the login page
-  //   this.menu.enable(false);
-  //   this.menu.swipeEnable(false);
-  // }
-
-  // onPageDidLeave() {
-  //   // enable the left menu when leaving the login page
-  //   this.menu.enable(true);
-  //   this.menu.swipeEnable(true);
-  // }
-  
-
  
- async onLogin(form: NgForm) {    
-    if (form.valid) {
+ async onLogin(form: NgForm) 
+ {
+
+   if (form.valid) {
     try{
       let toast = this.toastCtrl.create({message: 'Please Check Your Creds', duration: 3000});
       this.afAuth.auth.signInWithEmailAndPassword(this.login.username,this.login.password).then(
@@ -74,7 +62,7 @@ export class LoginPage {
         console.log("Error");      
         toast.present();
         });
-  }
+    }
   catch(e)
   {
     let toast = this.toastCtrl.create({
@@ -83,12 +71,8 @@ export class LoginPage {
     });
     toast.present();
     }
-  }  //console.log(error);
-  
-  else{
-      console.log("ERROR!!!!!!!!!!");
-    }
   }
+ }
 
   onSignup() {
     this.navCtrl.push(SignupPage);
@@ -103,7 +87,15 @@ export class LoginPage {
       this.submitted = true;
       this.authServe.login();
       this.userData.loginFromFacebook(res);
-      this.navCtrl.setRoot("MenuPage");
+      let loading = this.loadingCtrl.create({
+        content: `Please Wait`,
+        duration: (Math.random() * 1000) + 500
+      });
+      loading.onWillDismiss(() => {
+        this.navCtrl.setRoot("MenuPage");
+      });
+      loading.present();
+      
      }
    )
     
@@ -114,4 +106,3 @@ export class LoginPage {
   
   }
 }
- 

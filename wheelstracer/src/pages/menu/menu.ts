@@ -8,9 +8,7 @@ import { Storage } from '@ionic/storage';
 
 import { AboutPage } from '../about/about';
 import { AccountPage } from '../account/account';
-//import { LoginPage } from '../login/login';
 import { MapPage } from '../map/map';
-//import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs-page/tabs-page';
 import { TutorialPage } from '../tutorial/tutorial';
 import { SchedulePage } from '../schedule/schedule';
@@ -19,6 +17,8 @@ import { SupportPage } from '../support/support';
 
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
+import {AuthService} from '../../providers/auth-service';
+import { LoginPage } from '../login/login';
 
 export interface PageInterface {
   title: string;
@@ -54,6 +54,18 @@ export class MenuPage {
  
   public rootPage = "TabsPage";
 
+  ionViewCanEnter(){
+    if(this.authServe.authenticated)
+    {
+      return this.authServe.authenticated;
+    }
+    else{
+      this.navCtrl.push(LoginPage);
+    }
+  
+  }
+
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public confData: ConferenceData,
@@ -62,7 +74,8 @@ export class MenuPage {
               public menu: MenuController,
               public platform: Platform,              
               public storage: Storage,
-              public splashScreen: SplashScreen
+              public splashScreen: SplashScreen,
+              public authServe:AuthService,
             ) {
     confData.load();
     this.menu.enable(true);
