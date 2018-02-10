@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
-
+import { StatusBar } from '@ionic-native/status-bar';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -9,9 +9,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { ConferenceApp } from './app.component';
+import { WheelsTracerApp } from './app.component';
+
 
 import { AboutPage } from '../pages/about/about';
+import {MenuPage} from '../pages/menu/menu';
 import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
@@ -26,17 +28,22 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
+
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import {FirebaseData} from '../providers/firebasedata';
 
 import {AngularFireModule} from 'angularfire2';
-import {AngularFireAuth} from 'angularfire2/auth';
+
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import { Facebook } from '@ionic-native/facebook';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { AuthService } from './../providers/auth-service';
 
 
 @NgModule({
   declarations: [
-    ConferenceApp,
+    WheelsTracerApp,
     AboutPage,
     AccountPage,
     LoginPage,
@@ -50,12 +57,15 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    MenuPage,
+    SupportPage,
+    
+    
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(ConferenceApp, {}, {
+    IonicModule.forRoot(WheelsTracerApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
         { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
@@ -69,7 +79,9 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
-        { component: SignupPage, name: 'SignupPage', segment: 'signup' }
+        { component: SignupPage, name: 'SignupPage', segment: 'signup' },
+        { component: MenuPage, name: 'MenuPage', segment: 'menu-page' }
+        
       ]
     }),
     IonicStorageModule.forRoot(),
@@ -82,10 +94,11 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
       messagingSenderId: "771410076911"
     }),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    ConferenceApp,
+    WheelsTracerApp,
     AboutPage,
     AccountPage,
     LoginPage,
@@ -99,14 +112,21 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    MenuPage
+        
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConferenceData,
     UserData,
     InAppBrowser,
-    SplashScreen
+    SplashScreen,
+    StatusBar,
+    Facebook,
+    FirebaseData,
+    AuthService,
+    
   ]
 })
 export class AppModule { }

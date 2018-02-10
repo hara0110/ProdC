@@ -11,6 +11,8 @@ import { TabsPage } from '../tabs-page/tabs-page';
 
 import {AngularFireAuth} from 'angularfire2/auth';
 
+import {FirebaseData} from '../../providers/firebasedata';
+
 
 @Component({
   selector: 'page-user',
@@ -19,9 +21,12 @@ import {AngularFireAuth} from 'angularfire2/auth';
 export class SignupPage {
   signup: UserOptions = { username: '', password: '' };
   submitted = false;
-
-  constructor(private afAuth : AngularFireAuth, public toastCtrl:ToastController,
-    public navCtrl: NavController, public userData: UserData ) {}
+  
+  constructor(private afAuth : AngularFireAuth, 
+    public toastCtrl:ToastController,
+    public navCtrl: NavController,
+    public userData: UserData,
+    public firebasedb:FirebaseData) {}
 
 
 
@@ -37,7 +42,8 @@ export class SignupPage {
         }); 
         this.afAuth.auth.createUserWithEmailAndPassword(this.signup.username,this.signup.password).then(
           ()=>{
-            this.userData.signup(this.signup.username);
+            
+            this.userData.signup(this.signup);
             this.navCtrl.push(TabsPage);            
           }).catch(function showError() {
              toast.present();
