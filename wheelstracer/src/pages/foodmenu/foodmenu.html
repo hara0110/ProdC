@@ -77,32 +77,46 @@
         </ion-row>
       </ion-grid>
     </div> -->
-    <div>          
+    <ion-card> 
+        <ion-card-header>
+           <b>Odia Platers</b>
+          </ion-card-header>
+        <div>          
         <ion-grid >
           <ion-row>
-            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [1,2,3,4]">
-                <ion-card>
-
-                               
-                    <img [src]="'assets/img/'+image+'.jpg'">
+            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [1,2]">
+                <ion-card>                               
+                    <img [src]="'assets/img/'+image+'.jpg'" class="food-items">
+                    <div >
+                    <ion-row>
+                      <ion-col></ion-col>
+                     
+                          <ion-col></ion-col>
+                    </ion-row>
+                  </div>
                     <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
                     <ion-row>
                       <ion-col>
                         <button ion-button icon-left clear small>
-                          <ion-icon name="md-add"></ion-icon>
-                         
+                          <ion-icon name="md-add"></ion-icon>                         
                         </button>
                       </ion-col>
+                      <div class="veg-nonveg">
+                          <ion-col>
+                              <img [src]="'assets/img/veg.jpg'">
+                            </ion-col>
+                          </div>
+                     
                       <ion-col>
                         <button ion-button icon-left clear small>
                           <ion-icon name="md-remove"></ion-icon>
                         </button>
                       </ion-col>
-                      <ion-col>
+                      <!-- <ion-col>
                           <button ion-button icon-left clear small>
                             <ion-icon name="md-arrow-forward"></ion-icon>
                           </button>
-                      </ion-col>                      
+                      </ion-col>                       -->
                     </ion-row>                  
                   </ion-card>
               
@@ -110,5 +124,55 @@
           </ion-row>
         </ion-grid>
       </div>
+    </ion-card>
+    <ion-card> 
+        <ion-card-header>
+           <b>Bengali Delight</b>
+          </ion-card-header>
+        <div>          
+        <ion-grid >
+          <ion-row>
+            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [3,4]">
+                <ion-card>                               
+                    <img [src]="'assets/img/'+image+'.jpg'" class="food-items">
+                    <div >
+                    <ion-row>
+                      <ion-col></ion-col>
+                     
+                          <ion-col></ion-col>
+                    </ion-row>
+                  </div>
+                    <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
+                    <ion-row>
+                      <ion-col>
+                        <button ion-button icon-left clear small>
+                          <ion-icon name="md-add"></ion-icon>                         
+                        </button>
+                      </ion-col>
+                      <div class="veg-nonveg">
+                          <ion-col>
+                              <img [src]="'assets/img/veg.jpg'">
+                            </ion-col>
+                          </div>
+                     
+                      <ion-col>
+                        <button ion-button icon-left clear small>
+                          <ion-icon name="md-remove"></ion-icon>
+                        </button>
+                      </ion-col>
+                      <!-- <ion-col>
+                          <button ion-button icon-left clear small>
+                            <ion-icon name="md-arrow-forward"></ion-icon>
+                          </button>
+                      </ion-col>                       -->
+                    </ion-row>                  
+                  </ion-card>
+              
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card>
+      
 
 </ion-content>
