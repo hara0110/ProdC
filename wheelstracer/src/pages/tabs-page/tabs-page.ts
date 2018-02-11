@@ -5,11 +5,12 @@ import { NavParams } from 'ionic-angular';
 
 import { AboutPage } from '../about/about';
 import { MapPage } from '../map/map';
-import { SchedulePage } from '../schedule/schedule';
+//import { SchedulePage } from '../schedule/schedule';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
 import { AuthService } from '../../providers/auth-service';
 
 import {  NavController } from 'ionic-angular';
+import { FoodmenuPage } from '../foodmenu/foodmenu';
 
 
 @Component({
@@ -17,7 +18,7 @@ import {  NavController } from 'ionic-angular';
 })
 export class TabsPage {
   // set the root pages for each tab
-  tab1Root: any = SchedulePage;
+  tab1Root: any = FoodmenuPage;
   tab2Root: any = SpeakerListPage;
   tab3Root: any = MapPage;
   tab4Root: any = AboutPage;

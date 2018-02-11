@@ -11,7 +11,7 @@ import { AccountPage } from '../account/account';
 import { MapPage } from '../map/map';
 import { TabsPage } from '../tabs-page/tabs-page';
 import { TutorialPage } from '../tutorial/tutorial';
-import { SchedulePage } from '../schedule/schedule';
+//import { SchedulePage } from '../schedule/schedule';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
 import { SupportPage } from '../support/support';
 
@@ -19,6 +19,7 @@ import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 import {AuthService} from '../../providers/auth-service';
 import { LoginPage } from '../login/login';
+import { FoodmenuPage } from '../foodmenu/foodmenu';
 
 export interface PageInterface {
   title: string;
@@ -41,10 +42,11 @@ export class MenuPage {
   public nav: Nav;
 
   appPages: PageInterface[] = [
-    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
-    { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
-    { title: 'Map', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
-    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+    { title: 'Select Your Menu', name: 'TabsPage', component: TabsPage, tabComponent: FoodmenuPage, index: 0, icon: 'menu' },
+    // { title: 'Todays Special', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 1, icon: 'calendar' },
+    { title: 'Regional Thali', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
+    { title: 'Track Order', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
+    { title: 'Support', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' },
@@ -127,13 +129,13 @@ export class MenuPage {
     // Tabs are a special case because they have their own navigation
     if (childNav) {
       if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-        return 'primary';
+        return 'danger';
       }
       return;
     }
 
     if (this.nav.getActive() && this.nav.getActive().name === page.name) {
-      return 'primary';
+      return 'danger';
     }
     return;
   }

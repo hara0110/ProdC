@@ -7,6 +7,8 @@ import { UserData } from '../../providers/user-data';
 import {AngularFireAuth} from 'angularfire2/auth';
 
 import {FirebaseData} from '../../providers/firebasedata';
+import {AuthService} from '../../providers/auth-service';
+
 
 
 
@@ -18,11 +20,23 @@ export class AccountPage {
   username: string;
   baseUserData  = { displayName:"" ,email:"",photoUrl:"",password:""};
 
+  ionViewCanEnter(){
+    if(this.authServe.authenticated)
+    {
+      return this.authServe.authenticated;
+    }
+    else{
+      this.nav.setRoot("LoginPage");
+    }
+  
+  }
+
   constructor(public alertCtrl: AlertController,
               public nav: NavController,
               public userData: UserData,
               public  afAuth: AngularFireAuth,
-              public firebasedb: FirebaseData
+              public firebasedb: FirebaseData,
+              public authServe:AuthService,
             ) {}
 
 
@@ -72,19 +86,15 @@ updatePicture() {
     var userProfileDb 
     if(this.afAuth.auth.currentUser){
      userProfileDb = this.firebasedb.getDbRoot().ref('users/' + this.afAuth.auth.currentUser.uid + '/userprofile');
-    var arr= userProfileDb.on('value',function(snapshot) {
-      var returnArr = [];
-
-         snapshot.forEach(function(childSnapshot) {
-          var item = childSnapshot.val();
-          
-          returnArr.push(item);
-      });
+     userProfileDb.on('value',function() {
       
-      
-   });
+      // this.baseUserData.photoUrl=snapshot.val().photoUrl;
+      // this.baseUserData.email=snapshot.val().email;
+      // this.baseUserData.displayName=snapshot.val().displayName;
+      // this.baseUserData.password=snapshot.val().password;
 
-    console.log(arr);
+
+    });
     this.baseUserData  = this.userData.baseUserData;
   }
   else{

@@ -3,11 +3,11 @@
 		<!-- <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button> -->
-		<ion-title style="text-align: center" >One Tap Login</ion-title>
+		<ion-title style="text-align: center" >LOGIN</ion-title>
 	</ion-navbar>
 </ion-header>
 
-<ion-content no-bounce>
+<ion-content no-bounce padding="true">
 	<!-- <div class="logo">
 		<img src="assets/img/appicon.svg" alt="Ionic logo">
 	</div> -->
@@ -53,7 +53,7 @@
 
 		<ion-slide>
 		  <h2>WHEELSTRACER</h2>
-		  <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>
+		  <img src="assets/img/ica-slidebox-img-1.png" class="slide-image"/>
 		  <h2 class="slide-title">
 			Food Court On Wheels
 		  </h2>
@@ -62,8 +62,11 @@
 			<!-- a practical preview of the ionic framework in action, and a demonstration of proper code use. </p> -->
 		  <ion-row responsive-sm>
 			   <ion-col>
-				   <button ion-button (click)="facebookLogin()"  block>Facebook Login</button>
+				   <button ion-button (click)="facebookLogin()"  block color="facebook">Facebook</button>
 			   </ion-col>
+			   <ion-col>
+					<button ion-button (click)="facebookLogin()"  block color="danger">Google</button>
+				</ion-col>
 			</ion-row>
 			<ion-row responsive-sm>
 			   <ion-col>
@@ -73,8 +76,12 @@
 		   </ion-row>
 		</ion-slide>	
 	</ion-slides>
-<ion-footer>
- 
+<ion-footer padding>	
+		
+		  <ion-toolbar>
+			
+		  </ion-toolbar>
+		
 </ion-footer>
 
 

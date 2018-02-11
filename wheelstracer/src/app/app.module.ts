@@ -7,6 +7,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+
 import { IonicStorageModule } from '@ionic/storage';
 
 import { WheelsTracerApp } from './app.component';
@@ -39,6 +40,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import { Facebook } from '@ionic-native/facebook';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { AuthService } from './../providers/auth-service';
+import { FoodmenuPage } from '../pages/foodmenu/foodmenu';
 
 
 @NgModule({
@@ -59,8 +61,7 @@ import { AuthService } from './../providers/auth-service';
     TutorialPage,
     MenuPage,
     SupportPage,
-    
-    
+    FoodmenuPage,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +81,8 @@ import { AuthService } from './../providers/auth-service';
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },
-        { component: MenuPage, name: 'MenuPage', segment: 'menu-page' }
+        { component: MenuPage, name: 'MenuPage', segment: 'menu-page' },
+        { component: FoodmenuPage, name: 'FoodmenuPage', segment: 'page-foodmenu' }
         
       ]
     }),
@@ -113,8 +115,8 @@ import { AuthService } from './../providers/auth-service';
     TabsPage,
     TutorialPage,
     SupportPage,
-    MenuPage
-        
+    MenuPage,
+    FoodmenuPage,        
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
