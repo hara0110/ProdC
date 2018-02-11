@@ -86,7 +86,7 @@
           <ion-row>
             <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [1,2]">
                 <ion-card>                               
-                    <img [src]="'assets/img/'+image+'.jpg'" class="food-items">
+                    <img [src]="'assets/img/'+image+'.jpg'" >
                     <div >
                     <ion-row>
                       <ion-col></ion-col>
@@ -103,7 +103,7 @@
                       </ion-col>
                       <div class="veg-nonveg">
                           <ion-col>
-                              <img [src]="'assets/img/veg.jpg'">
+                              <img [src]="'assets/img/veg.jpg'" class="food-items"> 
                             </ion-col>
                           </div>
                      

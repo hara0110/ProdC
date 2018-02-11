@@ -3,11 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Speakers</ion-title>
+    <ion-title>Regional Thali</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="outer-content speaker-list">
+<!-- <ion-content class="outer-content speaker-list">
   <ion-list [virtualScroll]="speakers">
     <ion-grid fixed>
       <ion-row align-items-stretch>
@@ -63,4 +63,73 @@
       </ion-row>
     </ion-grid>
   </ion-list>
-</ion-content>
+</ion-content> -->
+
+<ion-content>
+      <ion-card>    
+          <ion-card-header>
+              <h4 style="text-align: center">Missing Home Food ??</h4>
+          </ion-card-header>
+        </ion-card>
+      <ion-card> 
+          <ion-card-header>
+              <ion-list no-lines>                             
+                  <ion-item>
+                    <ion-icon name="pin" item-start></ion-icon>
+                    <ion-select>
+                      <ion-option value="hitechcity" selected>North Indian</ion-option>
+                      <ion-option value="gachibowli">Mumbai Food</ion-option>
+                      <ion-option value="kondapur">Gujurati</ion-option>
+                      <ion-option value="madhapur">Odisha</ion-option>
+                      <ion-option value="madhapur">Tamil</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+            </ion-card-header>
+          <div>          
+          <ion-grid >
+            <ion-row>
+              <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [1,2,3,4]">
+                  <ion-card>                               
+                      <img [src]="'assets/img/'+image+'.jpg'" >
+                      <div >
+                      <ion-row>
+                        <ion-col></ion-col>
+                       
+                            <ion-col></ion-col>
+                      </ion-row>
+                    </div>
+                      <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
+                      <ion-row>
+                        <ion-col>
+                          <button ion-button icon-left clear small>
+                            <ion-icon name="md-add"></ion-icon>                         
+                          </button>
+                        </ion-col>
+                        <div class="veg-nonveg">
+                            <ion-col>
+                                <img [src]="'assets/img/veg.jpg'" class="food-items"> 
+                              </ion-col>
+                            </div>
+                       
+                        <ion-col>
+                          <button ion-button icon-left clear small>
+                            <ion-icon name="md-remove"></ion-icon>
+                          </button>
+                        </ion-col>
+                        <!-- <ion-col>
+                            <button ion-button icon-left clear small>
+                              <ion-icon name="md-arrow-forward"></ion-icon>
+                            </button>
+                        </ion-col>                       -->
+                      </ion-row>                  
+                    </ion-card>
+                
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card>
+             
+  
+  </ion-content>
