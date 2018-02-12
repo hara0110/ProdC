@@ -84,9 +84,9 @@
         <div>          
         <ion-grid >
           <ion-row>
-            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [1,2]">
+            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let product of products | async">
                 <ion-card>                               
-                    <img [src]="'assets/img/'+image+'.jpg'" >
+                    <img [src]="'assets/img/'+product.image+'.jpg'" >
                     <div >
                     <ion-row>
                       <ion-col></ion-col>
@@ -97,7 +97,7 @@
                     <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
                     <ion-row>
                       <ion-col>
-                        <button ion-button icon-left clear small>
+                        <button ion-button icon-left clear small (click)="addToCart(product)">
                           <ion-icon name="md-add"></ion-icon>                         
                         </button>
                       </ion-col>

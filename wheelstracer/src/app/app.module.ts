@@ -12,7 +12,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { WheelsTracerApp } from './app.component';
 
-
+import {CartService} from '../providers/cart.service';
 import { AboutPage } from '../pages/about/about';
 import {MenuPage} from '../pages/menu/menu';
 import { PopoverPage } from '../pages/about-popover/about-popover';
@@ -29,7 +29,7 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
-
+import {AngularFireDatabase} from 'angularfire2/database-deprecated';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 import {FirebaseData} from '../providers/firebasedata';
@@ -41,6 +41,7 @@ import { Facebook } from '@ionic-native/facebook';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { AuthService } from './../providers/auth-service';
 import { FoodmenuPage } from '../pages/foodmenu/foodmenu';
+import {SharedService} from '../providers/shared.service';
 
 
 @NgModule({
@@ -95,8 +96,9 @@ import { FoodmenuPage } from '../pages/foodmenu/foodmenu';
       storageBucket: "prodc-da2cd.appspot.com",
       messagingSenderId: "771410076911"
     }),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
+    AngularFireAuthModule,   
+    AngularFireDatabaseModule, 
+       
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -128,7 +130,9 @@ import { FoodmenuPage } from '../pages/foodmenu/foodmenu';
     Facebook,
     FirebaseData,
     AuthService,
-    
-  ]
+    CartService,
+    AngularFireDatabase,
+    SharedService,
+    ]
 })
 export class AppModule { }

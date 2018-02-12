@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
+import {FirebaseListObservable} from 'angularfire2/database-deprecated';
+//import { AngularFireAuth } from 'angularfire2/auth';
 
+//import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database-deprecated';
+
+
+import { IonicPage, NavController, NavParams  } from 'ionic-angular';
+//import {ViewController  } from 'ionic-angular';
 import { PopoverPage } from '../about-popover/about-popover';
+import {CartService} from '../../providers/cart.service';
+import {AuthService} from '../../providers/auth-service';
+import { LoginPage } from '../login/login';
+import { UserData } from '../../providers/user-data';
 
 
-/**
- * Generated class for the FoodmenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,13 +25,47 @@ import { PopoverPage } from '../about-popover/about-popover';
 export class FoodmenuPage {
 
   currentDate:any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController) {
-    this.currentDate =new Date().toJSON().split('T')[0];
-  }
+  products: FirebaseListObservable<any[]>;
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public popoverCtrl: PopoverController,
+              public productCart:CartService,
+              public db: AngularFireDatabase,
+              public afAuth: AuthService,
+              public cartService: CartService,
+              public authService: AuthService,
+              public userData :UserData,
+            ) {
+                this.currentDate =new Date().toJSON().split('T')[0];
+                if(this.afAuth.authenticated){
+                  try{
+                  this.products = db.list('products');
+                  productCart.loadCartList(this.afAuth.getLoggedInUserId());
+                  console.log(afAuth.getLoggedInUserId());
+                  }
+                  catch(e){
+                    console.log("ERROR");
+                    this.userData.logout();
+                    this.navCtrl.setRoot("LoginPage")
+                  }
+                }
+              else{
+                navCtrl.push(LoginPage);
+              }
+          }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FoodmenuPage');
+  }
+
+  ionViewCanEnter(){
+   if(this.afAuth.authenticated){
+     return true;
+   }
+   else{
+     this.navCtrl.push(LoginPage);
+   }
+
   }
 
   presentPopover(event: Event) {
@@ -37,6 +76,10 @@ export class FoodmenuPage {
   presentFilter()
   {
     console.log("Veg / Non Veg");
+  }
+
+  addToCart(product)  : void  {
+    this.cartService.addCartItem(this.authService.getLoggedInUserId(), product);
   }
 
 }

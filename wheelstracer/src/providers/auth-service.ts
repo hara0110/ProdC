@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
- 
+
+
 @Injectable()
 export class AuthService {
  
   private isLoggedIn = false;
  
-  constructor(public afAuth:AngularFireAuth) {
-   
+  constructor(public afAuth:AngularFireAuth ) {
+    
     afAuth.auth.onAuthStateChanged(function(user) {
       if (user) {
        this.isLoggedIn=true;
@@ -42,4 +43,13 @@ export class AuthService {
     console.log( this.isLoggedIn);
       return this.isLoggedIn;
   }
+
+  getLoggedInUserId()
+  {
+    
+      return this.afAuth.auth.currentUser.uid;
+    
+      
+  }
+
 }

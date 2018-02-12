@@ -24,6 +24,11 @@ export class TabsPage {
   tab4Root: any = AboutPage;
   mySelectedIndex: number;
 
+  ionViewCanEnter(){
+    
+    return this.authServe.authenticated;
+ }
+
   constructor(navParams: NavParams , public authServe:AuthService ,public navCtrl :NavController) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;
   }

@@ -11,14 +11,13 @@ import { AccountPage } from '../account/account';
 import { MapPage } from '../map/map';
 import { TabsPage } from '../tabs-page/tabs-page';
 import { TutorialPage } from '../tutorial/tutorial';
-//import { SchedulePage } from '../schedule/schedule';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
 import { SupportPage } from '../support/support';
 
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 import {AuthService} from '../../providers/auth-service';
-import { LoginPage } from '../login/login';
+//import { LoginPage } from '../login/login';
 import { FoodmenuPage } from '../foodmenu/foodmenu';
 
 export interface PageInterface {
@@ -57,15 +56,9 @@ export class MenuPage {
   public rootPage = "TabsPage";
 
   ionViewCanEnter(){
-    if(this.authServe.authenticated)
-    {
+    
       return this.authServe.authenticated;
-    }
-    else{
-      this.navCtrl.push(LoginPage);
-    }
-  
-  }
+   }
 
 
   constructor(public navCtrl: NavController,
