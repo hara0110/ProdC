@@ -28,6 +28,8 @@ import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
+import {UsercartPage} from '../pages/usercart/usercart';
+import {CheckoutPage} from '../pages/checkout/checkout';
 
 import {AngularFireDatabase} from 'angularfire2/database-deprecated';
 import { ConferenceData } from '../providers/conference-data';
@@ -42,6 +44,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { AuthService } from './../providers/auth-service';
 import { FoodmenuPage } from '../pages/foodmenu/foodmenu';
 import {SharedService} from '../providers/shared.service';
+import {CustomerService} from '../providers/customer-service';
 
 
 @NgModule({
@@ -63,6 +66,8 @@ import {SharedService} from '../providers/shared.service';
     MenuPage,
     SupportPage,
     FoodmenuPage,
+    UsercartPage,
+    CheckoutPage,
   ],
   imports: [
     BrowserModule,
@@ -118,7 +123,9 @@ import {SharedService} from '../providers/shared.service';
     TutorialPage,
     SupportPage,
     MenuPage,
-    FoodmenuPage,        
+    FoodmenuPage, 
+    UsercartPage,
+    CheckoutPage,  
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -133,6 +140,7 @@ import {SharedService} from '../providers/shared.service';
     CartService,
     AngularFireDatabase,
     SharedService,
+    CustomerService,
     ]
 })
 export class AppModule { }

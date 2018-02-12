@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PopoverController } from 'ionic-angular';
+import { PopoverController, App } from 'ionic-angular';
 import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 //import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -12,8 +12,10 @@ import { IonicPage, NavController, NavParams  } from 'ionic-angular';
 import { PopoverPage } from '../about-popover/about-popover';
 import {CartService} from '../../providers/cart.service';
 import {AuthService} from '../../providers/auth-service';
-import { LoginPage } from '../login/login';
+//import { LoginPage } from '../login/login';
 import { UserData } from '../../providers/user-data';
+import {UsercartPage} from '../usercart/usercart';
+import { LoginPage } from '../login/login';
 
 
 
@@ -35,6 +37,7 @@ export class FoodmenuPage {
               public cartService: CartService,
               public authService: AuthService,
               public userData :UserData,
+              private app :App,
             ) {
                 this.currentDate =new Date().toJSON().split('T')[0];
                 if(this.afAuth.authenticated){
@@ -46,12 +49,10 @@ export class FoodmenuPage {
                   catch(e){
                     console.log("ERROR");
                     this.userData.logout();
-                    this.navCtrl.setRoot("LoginPage")
+                    this.app.getRootNav().setRoot(LoginPage); 
                   }
                 }
-              else{
-                navCtrl.push(LoginPage);
-              }
+             
           }
 
   ionViewDidLoad() {
@@ -61,11 +62,7 @@ export class FoodmenuPage {
   ionViewCanEnter(){
    if(this.afAuth.authenticated){
      return true;
-   }
-   else{
-     this.navCtrl.push(LoginPage);
-   }
-
+   }  
   }
 
   presentPopover(event: Event) {
@@ -80,6 +77,10 @@ export class FoodmenuPage {
 
   addToCart(product)  : void  {
     this.cartService.addCartItem(this.authService.getLoggedInUserId(), product);
+  }
+
+  showCart(){
+    this.navCtrl.push(UsercartPage);
   }
 
 }
