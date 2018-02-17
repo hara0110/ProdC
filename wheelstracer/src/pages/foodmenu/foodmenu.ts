@@ -21,9 +21,11 @@ export class FoodmenuPage {
   nvCurry: FirebaseListObservable<any[]>;
   vCurry: FirebaseListObservable<any[]>;
   nvStaple: FirebaseListObservable<any[]>;
-  vStaple: FirebaseListObservable<any[]>;
-  //products:Observable<any[]>;
-
+  vStaple:FirebaseListObservable<any[]>
+  stapleLoader:FirebaseListObservable<any[]>;
+  curryLoader:FirebaseListObservable<any[]>;
+  eatType = ["Veg", "Non-Veg", "Veg/Non-Veg"];
+  
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public popoverCtrl: PopoverController,
@@ -36,21 +38,17 @@ export class FoodmenuPage {
               private app :App,
             ) {
                 this.currentDate =new Date().toJSON().split('T')[0];
+                
                 if(this.afAuth.authenticated){
                   try{
                   this.nvCurry =  db.list('/food/nonveg/curry'); 
                   this.vCurry =  db.list('/food/veg/curry'); 
                   this.nvStaple =  db.list('/food/nonveg/staples'); 
-                  this.vStaple =  db.list('food/veg/staples');                 
+                  this.vStaple =  db.list('food/veg/staples');   
+                  this.stapleLoader=this.vStaple;
+
                   productCart.loadCartList(this.afAuth.getLoggedInUserId());
-
-                  // const prodRef=firebase.database().ref().child("products");
-                  // prodRef.on('value',snap=>{console.log(snap.val())});
-                  // prodRef.orderByChild("category").equalTo("staple").on('value',snap=>{console.log(snap.val())});
-
-               
                 }
-
                   catch(e){
                     console.log("ERROR");
                     this.userData.logout();
@@ -59,6 +57,10 @@ export class FoodmenuPage {
                 }
                 
           }
+  getVegOrNonVegStaple(){
+    //this.stapleLoader= this.nvCurry;
+    console.log("Filter");
+  }
 
   
   ionViewDidLoad() {
@@ -88,5 +90,5 @@ export class FoodmenuPage {
   showCart(){
     this.navCtrl.push(UsercartPage);
   }
-
+  
 }

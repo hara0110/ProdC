@@ -1,178 +1,231 @@
- <ion-header>
-        <ion-navbar no-border-bottom>
-          <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-          <ion-title style="text-align: center">Welcome</ion-title>
-         <ion-buttons end>
-            <button ion-button icon-only (click)="showCart()">
-                <ion-icon name="cart"></ion-icon>
-            </button>
-          </ion-buttons>
-        </ion-navbar>
-      
-        <ion-toolbar no-border-top>
-          <ion-searchbar color="primary"></ion-searchbar>
-       
-                         <!-- [(ngModel)]="queryText"
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center">Welcome</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showCart()">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary"></ion-searchbar>
+
+    <!-- [(ngModel)]="queryText"
                          (ionInput)="updateSchedule()"
                          placeholder="Search"> -->
-          
-        </ion-toolbar>
- </ion-header>
+
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <div class="about-header">
     <ion-row>
       <ion-col></ion-col>
-      <ion-col><h2 style="text-align: center">WHEELSTRACER</h2></ion-col>
+      <ion-col>
+        <h2 style="text-align: center">WHEELSTRACER</h2>
+      </ion-col>
       <ion-col></ion-col>
 
     </ion-row>
-      
-    
+
+
     <!-- <img src="assets/img/DBN1.gif"  alt="ionic logo"> -->
   </div>
-  
+
   <div padding class="about-info">
     <div style="max-width:600px; margin:0 auto;">
- 
-    <ion-card>    
+
+      <ion-card>
         <ion-card-header>
-            <h4 style="text-align: center">Good Food :: Whenever And Wherever </h4>
+          <h4 style="text-align: center">Good Food :: Whenever And Wherever </h4>
         </ion-card-header>
-      
+
         <ion-card-content>
-            <ion-list no-lines>
-                <ion-item>
-                  <ion-icon name="calendar" item-start></ion-icon>
-                  <ion-label>When</ion-label>
-                  <ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="currentDate" ></ion-datetime>
-                </ion-item>
-          
-                <ion-item>
-                  <ion-icon name="pin" item-start></ion-icon>
-                  <ion-label>Where</ion-label>
-                  <ion-select>
-                    <ion-option value="hitechcity" selected>Hi-Tech City</ion-option>
-                    <ion-option value="gachibowli">Gachibowli</ion-option>
-                    <ion-option value="kondapur">Kondapur</ion-option>
-                    <ion-option value="madhapur">Madhapur</ion-option>
-                  </ion-select>
-                </ion-item>
-              </ion-list>
-          
+          <ion-list no-lines>
+            <ion-item>
+              <ion-icon name="calendar" item-start></ion-icon>
+              <ion-label>When</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="currentDate"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon name="pin" item-start></ion-icon>
+              <ion-label>Where</ion-label>
+              <ion-select style="padding-left: 1px;">
+                <ion-option value="hitechcity" selected>Hi-Tech City</ion-option>
+                <ion-option value="gachibowli">Gachibowli</ion-option>
+                <ion-option value="kondapur">Kondapur</ion-option>
+                <ion-option value="madhapur">Madhapur</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
         </ion-card-content>
-      
+
       </ion-card>
     </div>
   </div>
-  <!-- <div>          
-      <ion-grid >
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px;">
+      <ion-list no-lines>
+        <ion-item>
+          <ion-label>
+            Staples
+          </ion-label>
+          <ion-select>
+            <ion-option *ngFor="let veg of eatType ">{{veg}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+    <div>
+      <ion-grid>
         <ion-row>
-          <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [1,2,3,4]">
-            <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div>
-            <ion-icon name="heart"></ion-icon>
+          <ion-col col-6 col-md-4 col-xl-3 *ngFor="let vegStaple of stapleLoader | async ">
+            <ion-card>
+              <img [src]="'assets/img/'+vegStaple.image+'.jpg'">
+
+              <ion-row style="background-color: burlywood">
+                <ion-col>
+                  <h4 style="text-align: center">{{vegStaple.name}}</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-left clear small (click)="addToCart(vegStaple)">
+                    <ion-icon name="md-add"></ion-icon>
+                  </button>
+                </ion-col>
+                <div class="veg-nonveg">
+                  <ion-col>
+                    <img [src]="'assets/img/veg.jpg'" class="food-items">
+                  </ion-col>
+                </div>
+
+                <ion-col>
+                  <button ion-button icon-left clear small>
+                    <ion-icon name="md-remove" (click)="changeVeg()"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
+          </ion-col>
+          <ion-col col-6 col-md-4 col-xl-3 *ngFor="let nonvegStaple of nvStaple | async ">
+            <ion-card>
+              <img [src]="'assets/img/'+nonvegStaple.image+'.jpg'">
+
+              <ion-row style="background-color: burlywood">
+                <ion-col>
+                  <h4 style="text-align: center">{{nonvegStaple.name}}</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-left clear small (click)="addToCart(nonvegStaple)">
+                    <ion-icon name="md-add"></ion-icon>
+                  </button>
+                </ion-col>
+                <div class="veg-nonveg">
+                  <ion-col>
+                    <img [src]="'assets/img/veg.jpg'" class="food-items">
+                  </ion-col>
+                </div>
+
+                <ion-col>
+                  <button ion-button icon-left clear small>
+                    <ion-icon name="md-remove" (click)="changeVeg()"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
           </ion-col>
         </ion-row>
       </ion-grid>
-    </div> -->
-    <ion-card> 
-        <ion-card-header>
-           <b>Staples</b>
-          </ion-card-header>
-        <div>          
-        <ion-grid >
-          <ion-row>
-            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let vegStaple of vStaple | async">
-                <ion-card>                               
-                    <img [src]="'assets/img/'+vegStaple.image+'.jpg'" >
-                    <div >
-                    <ion-row>
-                      <ion-col></ion-col>
-                     
-                          <ion-col></ion-col>
-                    </ion-row>
-                  </div>
-                    <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
-                    <ion-row>
-                      <ion-col>
-                        <button ion-button icon-left clear small (click)="addToCart(vegStaple)">
-                          <ion-icon name="md-add"></ion-icon>                         
-                        </button>
-                      </ion-col>
-                      <div class="veg-nonveg">
-                          <ion-col>
-                              <img [src]="'assets/img/veg.jpg'" class="food-items"> 
-                            </ion-col>
-                          </div>
-                     
-                      <ion-col>
-                        <button ion-button icon-left clear small>
-                          <ion-icon name="md-remove" (click)="removefromCart(vegStaple)"></ion-icon>
-                        </button>
-                      </ion-col>
-                      <!-- <ion-col>
-                          <button ion-button icon-left clear small>
-                            <ion-icon name="md-arrow-forward"></ion-icon>
-                          </button>
-                      </ion-col>                       -->
-                    </ion-row>                  
-                  </ion-card>
-              
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </ion-card>
-    <ion-card> 
-        <ion-card-header>
-           <b>Curry</b>
-          </ion-card-header>
-        <div>          
-        <ion-grid >
-          <ion-row>
-            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let vegCurry of vCurry | async ">
-              <ion-card>                               
-                  <img [src]="'assets/img/'+vegCurry.image+'.jpg'" >
-                  <div >
-                  <ion-row>
-                      <ion-col></ion-col>
-                     
-                          <ion-col></ion-col>
-                    </ion-row>
-                  </div>
-                    <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
-                    <ion-row>
-                      <ion-col>
-                        <button ion-button icon-left clear small (click)="addToCart(vegCurry)">
-                          <ion-icon name="md-add"></ion-icon>                         
-                        </button>
-                      </ion-col>
-                      <div class="veg-nonveg">
-                          <ion-col>
-                              <img [src]="'assets/img/veg.jpg'">
-                            </ion-col>
-                          </div>
-                     
-                      <ion-col>
-                        <button ion-button icon-left clear small>
-                          <ion-icon name="md-remove"></ion-icon>
-                        </button>
-                      </ion-col>
-                      <!-- <ion-col>
-                          <button ion-button icon-left clear small>
-                            <ion-icon name="md-arrow-forward"></ion-icon>
-                          </button>
-                      </ion-col>                       -->
-                    </ion-row>                  
-                  </ion-card>
-              
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </ion-card>
-      
+    </div>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-label>
+            Curry
+          </ion-label>
+          <ion-select>
+            <ion-option *ngFor="let veg of eatType" value="veg">{{veg}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 col-md-4 col-xl-3 *ngFor="let vegCurry of vCurry | async ">
+            <ion-card>
+              <img [src]="'assets/img/'+vegCurry.image+'.jpg'">
+              <ion-row style="background-color: burlywood">
+                <ion-col>
+                  <h4 style="text-align: center">{{vegCurry.name}}</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-left clear small (click)="addToCart(vegCurry)">
+                    <ion-icon name="md-add"></ion-icon>
+                  </button>
+                </ion-col>
+                <div class="veg-nonveg">
+                  <ion-col>
+                    <img [src]="'assets/img/veg.jpg'">
+                  </ion-col>
+                </div>
+
+                <ion-col>
+                  <button ion-button icon-left clear small>
+                    <ion-icon name="md-remove"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+
+          </ion-col>
+          <ion-col col-6 col-md-4 col-xl-3 *ngFor="let nonvegCurry of nvCurry | async ">
+            <ion-card>
+              <img [src]="'assets/img/'+nonvegCurry.image+'.jpg'">
+              <ion-row style="background-color: burlywood">
+                <ion-col>
+                  <h4 style="text-align: center">{{nonvegCurry.name}}</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <button ion-button icon-left clear small (click)="addToCart(nonvegCurry)">
+                    <ion-icon name="md-add"></ion-icon>
+                  </button>
+                </ion-col>
+                <div class="veg-nonveg">
+                  <ion-col>
+                    <img [src]="'assets/img/veg.jpg'">
+                  </ion-col>
+                </div>
+
+                <ion-col>
+                  <button ion-button icon-left clear small>
+                    <ion-icon name="md-remove"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card>
+
 
 </ion-content>
