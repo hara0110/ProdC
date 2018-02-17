@@ -33,18 +33,38 @@ export class CartService {
 	  );
 
   };
+  getSecPath(category):String{
+    if(category=="vegCurry"){
+       return "/food/veg/curry/";
+     }
+     else if(category=="nonVegCurry")
+     {
+      return "/food/nonveg/curry/";
+     }
+     else if(category=="vegStaple"){
+      return "/food/veg/staples/";
+     }
+     else if(category=="nonVegStaple"){
+      return "/food/nonveg/staples/";
+     }
+
+  }
+  
+
 
   addCartItem(userid : string, product: any){
    
 
     this.loadCartList(userid);
     
+    var path = this.getSecPath(product.category);
+  
     this.db.object(`cart/${userid}/${product.$key}`, {preserveSnapshot:true} ).first().subscribe(data => {
       if(data.val() !== null) {
         this.incrementCartItem(userid,product);
       } else {
         
-        this.db.object('products/'+product.$key, { preserveSnapshot: true }).first().subscribe(productData =>{
+        this.db.object(path+product.$key, { preserveSnapshot: true }).first().subscribe(productData =>{
         //%%%%%%%%%%%%%%%%
 
           if( productData.val().stock!=0 && productData.val().available == true){ 
@@ -53,10 +73,11 @@ export class CartService {
                 image: product.image,
                 name:  product.name,
                 price: product.price,
+                category:product.category,
                 quantity:1
             }
             this.cartItems.update(product.$key , cartItem);
-            this.sharedService.showToast("Item Added!");
+            this.sharedService.showToast(product.name+" Added!");
           }else{
             this.sharedService.showToast("Item not Available");
           }
@@ -71,7 +92,7 @@ export class CartService {
 
   removeCartItem(userid : string, productId : string){
     this.loadCartList(userid);
-    this.cartItems.remove(productId).then(_ => this.sharedService.showToast("Item removed!") );
+    this.cartItems.remove(productId).then(_ => this.sharedService.showToast("Item Removed!") );
   };
 
   decrementCartItem(userid : string, product : any){
@@ -94,14 +115,13 @@ export class CartService {
 
   incrementCartItem(userid : string, product : any){
     
-   
-
-    this.loadCartList(userid);
-    
+    var path;
+    path= this.getSecPath(product.category);
+    this.loadCartList(userid);    
     this.db.object(`cart/${userid}/${product.$key}`, {preserveSnapshot:true} ).first().subscribe(cartItem => {
       if(cartItem.val() !== null) {
-
-        this.db.object('products/'+product.$key, { preserveSnapshot: true }).first().subscribe(productData =>{
+        
+        this.db.object(path+product.$key, { preserveSnapshot: true }).first().subscribe(productData =>{
         //%%%%%%%%%%%%%%%%
 
           if(cartItem.val().quantity+1 <= productData.val().stock && productData.val().available == true){ // checking cart stock

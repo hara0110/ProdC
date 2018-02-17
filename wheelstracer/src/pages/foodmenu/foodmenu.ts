@@ -1,23 +1,14 @@
 import { Component } from '@angular/core';
 import { PopoverController, App } from 'ionic-angular';
 import {FirebaseListObservable} from 'angularfire2/database-deprecated';
-//import { AngularFireAuth } from 'angularfire2/auth';
-
-//import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {AngularFireDatabase} from 'angularfire2/database-deprecated';
-
-
 import { IonicPage, NavController, NavParams  } from 'ionic-angular';
-//import {ViewController  } from 'ionic-angular';
 import { PopoverPage } from '../about-popover/about-popover';
 import {CartService} from '../../providers/cart.service';
 import {AuthService} from '../../providers/auth-service';
-//import { LoginPage } from '../login/login';
 import { UserData } from '../../providers/user-data';
 import {UsercartPage} from '../usercart/usercart';
 import { LoginPage } from '../login/login';
-
-
 
 @IonicPage()
 @Component({
@@ -27,7 +18,12 @@ import { LoginPage } from '../login/login';
 export class FoodmenuPage {
 
   currentDate:any;
-  products: FirebaseListObservable<any[]>;
+  nvCurry: FirebaseListObservable<any[]>;
+  vCurry: FirebaseListObservable<any[]>;
+  nvStaple: FirebaseListObservable<any[]>;
+  vStaple: FirebaseListObservable<any[]>;
+  //products:Observable<any[]>;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public popoverCtrl: PopoverController,
@@ -42,19 +38,29 @@ export class FoodmenuPage {
                 this.currentDate =new Date().toJSON().split('T')[0];
                 if(this.afAuth.authenticated){
                   try{
-                  this.products = db.list('products');
+                  this.nvCurry =  db.list('/food/nonveg/curry'); 
+                  this.vCurry =  db.list('/food/veg/curry'); 
+                  this.nvStaple =  db.list('/food/nonveg/staples'); 
+                  this.vStaple =  db.list('food/veg/staples');                 
                   productCart.loadCartList(this.afAuth.getLoggedInUserId());
-                  console.log(afAuth.getLoggedInUserId());
-                  }
+
+                  // const prodRef=firebase.database().ref().child("products");
+                  // prodRef.on('value',snap=>{console.log(snap.val())});
+                  // prodRef.orderByChild("category").equalTo("staple").on('value',snap=>{console.log(snap.val())});
+
+               
+                }
+
                   catch(e){
                     console.log("ERROR");
                     this.userData.logout();
                     this.app.getRootNav().setRoot(LoginPage); 
                   }
                 }
-             
+                
           }
 
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad FoodmenuPage');
   }

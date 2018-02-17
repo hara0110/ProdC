@@ -24,6 +24,7 @@
     "@angular/http": "5.0.0",
     "@angular/platform-browser": "5.0.0",
     "@angular/platform-browser-dynamic": "5.0.0",
+    "@firebase/database": "^0.1.9",
     "@ionic-native/core": "^4.3.1",
     "@ionic-native/facebook": "^4.5.3",
     "@ionic-native/in-app-browser": "^4.3.1",

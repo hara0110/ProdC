@@ -79,14 +79,14 @@
     </div> -->
     <ion-card> 
         <ion-card-header>
-           <b>Odia Platers</b>
+           <b>Staples</b>
           </ion-card-header>
         <div>          
         <ion-grid >
           <ion-row>
-            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let product of products | async">
+            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let vegStaple of vStaple | async">
                 <ion-card>                               
-                    <img [src]="'assets/img/'+product.image+'.jpg'" >
+                    <img [src]="'assets/img/'+vegStaple.image+'.jpg'" >
                     <div >
                     <ion-row>
                       <ion-col></ion-col>
@@ -97,7 +97,7 @@
                     <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
                     <ion-row>
                       <ion-col>
-                        <button ion-button icon-left clear small (click)="addToCart(product)">
+                        <button ion-button icon-left clear small (click)="addToCart(vegStaple)">
                           <ion-icon name="md-add"></ion-icon>                         
                         </button>
                       </ion-col>
@@ -109,7 +109,7 @@
                      
                       <ion-col>
                         <button ion-button icon-left clear small>
-                          <ion-icon name="md-remove"></ion-icon>
+                          <ion-icon name="md-remove" (click)="removefromCart(vegStaple)"></ion-icon>
                         </button>
                       </ion-col>
                       <!-- <ion-col>
@@ -127,16 +127,16 @@
     </ion-card>
     <ion-card> 
         <ion-card-header>
-           <b>Bengali Delight</b>
+           <b>Curry</b>
           </ion-card-header>
         <div>          
         <ion-grid >
           <ion-row>
-            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let image of [3,4]">
-                <ion-card>                               
-                    <img [src]="'assets/img/'+image+'.jpg'" class="food-items">
-                    <div >
-                    <ion-row>
+            <ion-col col-6 col-md-4 col-xl-3 *ngFor="let vegCurry of vCurry | async ">
+              <ion-card>                               
+                  <img [src]="'assets/img/'+vegCurry.image+'.jpg'" >
+                  <div >
+                  <ion-row>
                       <ion-col></ion-col>
                      
                           <ion-col></ion-col>
@@ -145,7 +145,7 @@
                     <!-- <div class="image-container" [style.background-image]="'url(assets/img/' + image + '.jpg)'"></div> -->
                     <ion-row>
                       <ion-col>
-                        <button ion-button icon-left clear small>
+                        <button ion-button icon-left clear small (click)="addToCart(vegCurry)">
                           <ion-icon name="md-add"></ion-icon>                         
                         </button>
                       </ion-col>

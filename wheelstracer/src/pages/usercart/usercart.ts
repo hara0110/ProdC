@@ -37,7 +37,7 @@ ionViewDidLoad() {
 
 
 increment(item : any) : void {
-this.cartService.incrementCartItem(this.authService.getLoggedInUserId(),item);
+ this.cartService.incrementCartItem(this.authService.getLoggedInUserId(),item);
 }
 decrement(item : any) : void {
 this.cartService.decrementCartItem(this.authService.getLoggedInUserId(),item);
