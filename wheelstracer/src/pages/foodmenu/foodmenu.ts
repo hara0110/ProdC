@@ -10,6 +10,7 @@ import { UserData } from '../../providers/user-data';
 import {UsercartPage} from '../usercart/usercart';
 import { LoginPage } from '../login/login';
 
+
 @IonicPage()
 @Component({
   selector: 'page-foodmenu',
@@ -21,11 +22,16 @@ export class FoodmenuPage {
   nvCurry: FirebaseListObservable<any[]>;
   vCurry: FirebaseListObservable<any[]>;
   nvStaple: FirebaseListObservable<any[]>;
-  vStaple:FirebaseListObservable<any[]>
+  // vStaple:FirebaseListObservable<any[]>;
+  vStaple: any;
   stapleLoader:FirebaseListObservable<any[]>;
   curryLoader:FirebaseListObservable<any[]>;
-  eatType = ["Veg", "Non-Veg", "Veg/Non-Veg"];
-  
+  eatTypes() : string[]{
+    return [
+      "Veg", "Non-Veg", "Veg/Non-Veg"
+    ];
+  } 
+  eatType: string = "Veg/Non-Veg";
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public popoverCtrl: PopoverController,
@@ -44,22 +50,21 @@ export class FoodmenuPage {
                   this.nvCurry =  db.list('/food/nonveg/curry'); 
                   this.vCurry =  db.list('/food/veg/curry'); 
                   this.nvStaple =  db.list('/food/nonveg/staples'); 
-                  this.vStaple =  db.list('food/veg/staples');   
-                  this.stapleLoader=this.vStaple;
-
+                  this.vStaple =  db.list('food/veg/staples');
+                  //this.eatType="Veg/Non-Veg";
                   productCart.loadCartList(this.afAuth.getLoggedInUserId());
                 }
                   catch(e){
-                    console.log("ERROR");
+                    console.log("ERROR"+ e);
                     this.userData.logout();
                     this.app.getRootNav().setRoot(LoginPage); 
                   }
-                }
-                
+                }                
           }
-  getVegOrNonVegStaple(){
-    //this.stapleLoader= this.nvCurry;
-    console.log("Filter");
+
+  onVegChange(newValue){
+    this.eatType=newValue;
+    console.log(newValue);
   }
 
   
