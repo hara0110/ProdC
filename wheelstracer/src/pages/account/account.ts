@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AlertController, NavController } from 'ionic-angular';
+import { AlertController, NavController, App } from 'ionic-angular';
 
 import { UserData } from '../../providers/user-data';
 
@@ -8,6 +8,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 
 import {FirebaseData} from '../../providers/firebasedata';
 import {AuthService} from '../../providers/auth-service';
+import { LoginPage } from '../login/login';
 
 
 
@@ -21,12 +22,13 @@ export class AccountPage {
   baseUserData  = { displayName:"" ,email:"",photoUrl:"",password:""};
 
   ionViewCanEnter(){
-    if(this.authServe.authenticated)
+    if(this.authServe.authenticated())
     {
       return this.authServe.authenticated;
     }
     else{
-      this.nav.setRoot("LoginPage");
+      this.userData.logout();
+      this.app.getRootNav().setRoot(LoginPage); 
     }
   
   }
@@ -37,6 +39,7 @@ export class AccountPage {
               public  afAuth: AngularFireAuth,
               public firebasedb: FirebaseData,
               public authServe:AuthService,
+              public app:App,
             ) {}
 
 
@@ -114,5 +117,8 @@ updatePicture() {
 
   support() {
     this.nav.push('SupportPage');
+  }
+  changeEmail(){
+    console.log("TODO");
   }
 }

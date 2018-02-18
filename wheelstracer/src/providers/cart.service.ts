@@ -34,17 +34,17 @@ export class CartService {
 
   };
   getSecPath(category):String{
-    if(category=="vegCurry"){
+    if(category=="vegcurry"){
        return "/food/veg/curry/";
      }
-     else if(category=="nonVegCurry")
+     else if(category=="nonvegcurry")
      {
       return "/food/nonveg/curry/";
      }
-     else if(category=="vegStaple"){
+     else if(category=="vegstaple"){
       return "/food/veg/staples/";
      }
-     else if(category=="nonVegStaple"){
+     else if(category=="nonvegstaple"){
       return "/food/nonveg/staples/";
      }
 

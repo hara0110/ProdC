@@ -11,14 +11,13 @@ import { AccountPage } from '../account/account';
 import { MapPage } from '../map/map';
 import { TabsPage } from '../tabs-page/tabs-page';
 import { TutorialPage } from '../tutorial/tutorial';
-import { SpeakerListPage } from '../speaker-list/speaker-list';
 import { SupportPage } from '../support/support';
 
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 import {AuthService} from '../../providers/auth-service';
-//import { LoginPage } from '../login/login';
 import { FoodmenuPage } from '../foodmenu/foodmenu';
+import { RegionalfoodPage } from '../regionalfood/regionalfood';
 
 export interface PageInterface {
   title: string;
@@ -43,7 +42,7 @@ export class MenuPage {
   appPages: PageInterface[] = [
     { title: 'Select Your Menu', name: 'TabsPage', component: TabsPage, tabComponent: FoodmenuPage, index: 0, icon: 'menu' },
     // { title: 'Todays Special', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 1, icon: 'calendar' },
-    { title: 'Regional Thali', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
+    { title: 'Regional Food', name: 'TabsPage', component: TabsPage, tabComponent: RegionalfoodPage, index: 1, icon: 'contacts' },
     { title: 'Track Order', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
     { title: 'Support', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];

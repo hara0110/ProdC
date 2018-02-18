@@ -45,7 +45,9 @@ import { AuthService } from './../providers/auth-service';
 import { FoodmenuPage } from '../pages/foodmenu/foodmenu';
 import {SharedService} from '../providers/shared.service';
 import {CustomerService} from '../providers/customer-service';
-
+import { RegionalfoodPage } from '../pages/regionalfood/regionalfood';
+import { AdminPage } from '../pages/admin/admin';
+import { UploadServiceProvider } from '../providers/upload-service';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import {CustomerService} from '../providers/customer-service';
     FoodmenuPage,
     UsercartPage,
     CheckoutPage,
+    RegionalfoodPage,
+    AdminPage,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +129,9 @@ import {CustomerService} from '../providers/customer-service';
     MenuPage,
     FoodmenuPage, 
     UsercartPage,
-    CheckoutPage,  
+    CheckoutPage,
+    RegionalfoodPage, 
+    AdminPage, 
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -141,6 +147,8 @@ import {CustomerService} from '../providers/customer-service';
     AngularFireDatabase,
     SharedService,
     CustomerService,
+    UploadServiceProvider,
+    UploadServiceProvider
     ]
 })
 export class AppModule { }

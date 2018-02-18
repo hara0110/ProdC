@@ -16,6 +16,7 @@ import { Facebook } from '@ionic-native/facebook';
 import {Platform} from 'ionic-angular';
 
 import {AuthService} from '../../providers/auth-service';
+import { AdminPage } from '../admin/admin';
 
 
 
@@ -42,7 +43,7 @@ export class LoginPage {
   ) { 
     this.navCtrl = navCtrl;
     this.userData = userData;
-    this.submitted = false;    
+   // this.submitted = false;    
     this.menu = menu;
   }
  
@@ -102,7 +103,11 @@ export class LoginPage {
    }  
   else{
     console.log();
+  } 
+  }
+  toAdminPage()
+  {
+    this.navCtrl.push(AdminPage);
   }
   
-  }
 }
