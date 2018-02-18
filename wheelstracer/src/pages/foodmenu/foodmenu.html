@@ -92,7 +92,7 @@
         <ion-row>
           <ion-col [hidden]="eatType=='Non-Veg'" col-6 col-md-4 col-xl-3 *ngFor="let vegStaple of vStaple | async ">
             <ion-card>
-              <img [src]="'assets/img/'+vegStaple.image+'.jpg'">
+              <img [src]="foodImagesRef1+vegStaple.image+foodImagesRef2">
 
               <ion-row style="background-color: burlywood">
                 <ion-col>
@@ -122,12 +122,13 @@
           </ion-col>
           <ion-col [hidden]="eatType=='Veg'" col-6 col-md-4 col-xl-3 *ngFor="let nonvegStaple of nvStaple | async ">
             <ion-card>
-              <img [src]="'assets/img/'+nonvegStaple.image+'.jpg'">
+              <img [src]="foodImagesRef1+nonvegStaple.image+foodImagesRef2">
 
               <ion-row style="background-color: burlywood">
                 <ion-col>
                   <h4 style="text-align: center">{{nonvegStaple.name}}</h4>
-                </ion-col>
+                  {{foodImagesRef1+nonvegStaple.image+foodImagesRef2}}
+                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
@@ -169,7 +170,7 @@
         <ion-row>
           <ion-col [hidden]="eatType=='Non-Veg'" col-6 col-md-4 col-xl-3 *ngFor="let vegCurry of vCurry | async ">
             <ion-card>
-              <img [src]="'assets/img/'+vegCurry.image+'.jpg'">
+              <img [src]="foodImagesRef1+vegCurry.image+foodImagesRef2">
               <ion-row style="background-color: burlywood">
                 <ion-col>
                   <h4 style="text-align: center">{{vegCurry.name}}</h4>
@@ -198,7 +199,7 @@
           </ion-col>
           <ion-col [hidden]="eatType=='Veg'" col-6 col-md-4 col-xl-3 *ngFor="let nonvegCurry of nvCurry | async ">
             <ion-card>
-              <img [src]="'assets/img/'+nonvegCurry.image+'.jpg'">
+              <img [src]="foodImagesRef1+nonvegCurry.image+foodImagesRef2">
               <ion-row style="background-color: burlywood">
                 <ion-col>
                   <h4 style="text-align: center">{{nonvegCurry.name}}</h4>

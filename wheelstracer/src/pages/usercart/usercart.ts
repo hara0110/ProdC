@@ -22,6 +22,8 @@ import { CheckoutPage } from '../checkout/checkout';
 })
 export class UsercartPage {
   cart: FirebaseListObservable<any>;
+  foodImagesRef1:string="https://firebasestorage.googleapis.com/v0/b/prodc-da2cd.appspot.com/o/assets%2Fimg%2F";
+  foodImagesRef2:string="?alt=media&token=8fd21811-2b5d-41be-b09e-462a963406a8";
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public cartService: CartService,

@@ -16,7 +16,7 @@ export class UploadServiceProvider {
 
   constructor(private db: AngularFireDatabase) { }
 
-  private basePath:string = '/uploads';
+  private basePath:string = '/assets/img/';
   uploads: FirebaseListObservable<Upload[]>;
 
   pushUpload(upload: Upload) {

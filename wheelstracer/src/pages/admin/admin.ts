@@ -3,6 +3,7 @@ import { IonicPage } from 'ionic-angular';
 import { Upload } from '../../providers/Upload';
 import { UploadServiceProvider } from '../../providers/upload-service';
 import * as _ from "lodash";
+import { CartService } from '../../providers/cart.service';
 
 
 /**
@@ -21,7 +22,7 @@ export class AdminPage {
 
   selectedFiles: FileList;
   currentUpload: Upload;
-  foodItem = {  available: '',
+  foodItem = {  available: true,
                 category: '',  
                 description: '',    
                 image: '',   
@@ -38,7 +39,7 @@ export class AdminPage {
   eatType: string ;
   foodType: string ;
   
-  constructor(private upSvc: UploadServiceProvider) { 
+  constructor(private upSvc: UploadServiceProvider,private cartServe:CartService) { 
     this.eatType="veg";
     this.foodType="staple";
   }
@@ -57,10 +58,11 @@ export class AdminPage {
   logForm()
   {   
     this.foodItem.image= this.uploadSingle();
-    this.foodItem.available="true";
+    this.foodItem.available=true;
     this.foodItem.stock="10";
     console.log(this.foodType);
     this.foodItem.category=this.eatType+this.foodType;
+    this.cartServe.addFoodItem(this.foodItem,this.eatType,this.foodType);
     console.log(this.foodItem);
   }
   uploadSingle():string {

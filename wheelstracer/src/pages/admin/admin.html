@@ -32,13 +32,13 @@
         </ion-item>
     <ion-item>
       <ion-label stacked color="primary">Veg/NonVeg</ion-label>
-      <ion-select [ngModel]="eatType" name="sel2" style="padding-left: 0px;padding-right: 2px;">
+      <ion-select [ngModel]="eatType" (ngModelChange)="onEatChange($event)" name="sel23" style="padding-left: 0px;padding-right: 2px;">
         <ion-option *ngFor="let i of eatTypes()">{{i}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label stacked color="primary">Curry/Staple</ion-label>
-      <ion-select [ngModel]="foodType" name="sel2" style="padding-left: 0px;padding-right: 2px;">
+      <ion-select [ngModel]="foodType" (ngModelChange)="onFoodChange($event)" name="sel2" style="padding-left: 0px;padding-right: 2px;">
         <ion-option *ngFor="let j of foodTypes()">{{j}}</ion-option>
       </ion-select>
     </ion-item>   
@@ -49,7 +49,9 @@
         Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
       </div>    
       <label>
-        <input ion-input type="file" (change)="detectFiles($event)">
+        <input ion-input type="file" (change)="detectFiles($event)"  resize-max-height="250"
+        resize-max-width="186"
+        resize-quality="0.7">
       </label>    
       <!-- <button [disabled]="!selectedFiles" (click)="uploadSingle()" ion-button block color="danger">    
         Upload Single

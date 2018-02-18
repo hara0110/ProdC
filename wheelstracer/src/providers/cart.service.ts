@@ -187,4 +187,15 @@ export class CartService {
   loadOrders(userid: string){
     this.orderItems = this.db.list('orders/'+userid);
   }
+
+  addFoodItem(foodItem:any,eatType:string,foodType:string){
+    try{
+      this.db.list('food/'+eatType+'/'+foodType+'/').push(foodItem);
+      console.log("coming");
+    }
+    catch(e){
+        console.log(e);
+    }
+    
+  }
 }

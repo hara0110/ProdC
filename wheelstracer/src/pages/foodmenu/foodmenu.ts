@@ -9,6 +9,7 @@ import {AuthService} from '../../providers/auth-service';
 import { UserData } from '../../providers/user-data';
 import {UsercartPage} from '../usercart/usercart';
 import { LoginPage } from '../login/login';
+//import * as firebase from 'firebase';
 
 
 @IonicPage()
@@ -32,6 +33,11 @@ export class FoodmenuPage {
     ];
   } 
   eatType: string = "Veg/Non-Veg";
+  //foodImagesRef:string="";
+  foodImagesRef1:string="https://firebasestorage.googleapis.com/v0/b/prodc-da2cd.appspot.com/o/assets%2Fimg%2F";
+  foodImagesRef2:string="?alt=media&token=8fd21811-2b5d-41be-b09e-462a963406a8";
+  
+  
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public popoverCtrl: PopoverController,
@@ -44,7 +50,10 @@ export class FoodmenuPage {
               private app :App,
             ) {
                 this.currentDate =new Date().toJSON().split('T')[0];
-                
+                // firebase.storage().ref("/assets/img/").getDownloadURL().then((url)=>{
+                //   this.foodImagesRef=url;
+                //   console.log(this.foodImagesRef);
+                // });                
                 if(this.afAuth.authenticated){
                   try{
                   this.nvCurry =  db.list('/food/nonveg/curry'); 
