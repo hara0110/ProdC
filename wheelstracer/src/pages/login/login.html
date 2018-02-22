@@ -1,13 +1,21 @@
-<ion-header>
-	<ion-navbar>
-		<!-- <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button> -->
-		<ion-title style="text-align: center" >LOGIN</ion-title>
-	</ion-navbar>
-</ion-header>
+<div id="custom-overlay" [style.display]="(splash && !isCorePlatform) ? 'flex': 'none'">
+		<div class="flb">
+		  <div class="Aligner-item Aligner-item--top"></div>
+		  <img src="assets/img/SplashScreen12.png">
+		  <div class="Aligner-item Aligner-item--bottom"></div>
+		</div>
+</div>
 
-<ion-content no-bounce padding="true">
+<!-- <ion-header>
+	<ion-navbar>
+		 <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button> 
+		 <ion-title style="text-align: center" >LOGIN</ion-title>
+	</ion-navbar> 
+ </ion-header> --> 
+
+<ion-content no-bounce padding="true" class="backgound-image">
 	<!-- <div class="logo">
 		<img src="assets/img/appicon.svg" alt="Ionic logo">
 	</div> -->
@@ -52,11 +60,14 @@
 		<!-- ionSlideWillChange)="onSlideChangeStart($event)" > -->
 
 		<ion-slide>
-		  <h2>WHEELSTRACER</h2>
-		  <img src="assets/img/ica-slidebox-img-1.png" class="slide-image" style="width: 155px;"/>
-		  <h2 class="slide-title">
-			Food Court On Wheels
-		  </h2>
+		  <!-- <h2>WHEELSTRACER</h2> -->
+		  <!-- <img src="assets/img/ica-slidebox-img-1.png" class="slide-image" style="width: 155px;"/> -->
+		  <img src="assets/img/SplashScreen12.png" >
+		  <!-- <img src="assets/img/logo1.png" style="width: 20%;height: auto;"> -->
+
+		  <!-- <h2 class="slide-title">
+			Food Court On Wheels 
+		  </h2> -->
 		  <p>
 		<!-- <b>	The  Food Court</b> on Wheels </p>  -->
 			<!-- a practical preview of the ionic framework in action, and a demonstration of proper code use. </p> -->
@@ -79,10 +90,10 @@
 			   </ion-col>
 			   
 		   </ion-row>
-		   <!-- <ion-row responsive-sm *ngIf="false">
+		   <ion-row responsive-sm *ngIf="false">
 			<ion-col>
 				<button ion-button (click)="toAdminPage()" color="light" block>Admin</button>
-			</ion-col> -->
+			</ion-col> 
 			
 		</ion-row>
 		</ion-slide>	
@@ -90,8 +101,21 @@
 
 </ion-content>
 <ion-footer>
-	<ion-toolbar>
+	<!-- <ion-toolbar>
+			<ion-row responsive-sm>
+					<ion-col>
+						<button ion-button (click)="facebookLogin()"  block color="facebook">
+							 <ion-icon name="logo-facebook"></ion-icon>
+							 &nbsp;&nbsp;FACEBOOK
+						 </button>
+					</ion-col>
+					<ion-col>
+						 <button ion-button (click)="facebookLogin()"  block color="danger">
+							 <ion-icon name="logo-google"></ion-icon>
+							 &nbsp;&nbsp;GOOGLE</button>
+					 </ion-col>
+				 </ion-row>
 	  
-	</ion-toolbar>
+	</ion-toolbar> -->
   
 </ion-footer>

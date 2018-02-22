@@ -29,7 +29,8 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
   facebookUserData :any;
-
+  isCorePlatform=false;
+  splash = true;
   constructor(private afAuth:AngularFireAuth,
               public toastCtrl: ToastController,
               public facebook:Facebook,
@@ -41,11 +42,21 @@ export class LoginPage {
               public menu : MenuController,
               public loadingCtrl: LoadingController,             
   ) { 
+    if (this.plt.is('core')){
+      this.isCorePlatform=true;
+    }
+    
     this.navCtrl = navCtrl;
     this.userData = userData;
    // this.submitted = false;    
     this.menu = menu;
   }
+ 
+  ionViewDidLoad() {
+    setTimeout(() => this.splash = false, 4000);
+    
+  }
+
  
  async onLogin(form: NgForm) 
  {

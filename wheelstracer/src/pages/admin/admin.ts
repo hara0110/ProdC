@@ -34,14 +34,14 @@ export class AdminPage {
   } 
 
   foodTypes(): string[]{
-    return ["staple","curry"];
+    return ["staples","curry"];
   }
   eatType: string ;
   foodType: string ;
   
   constructor(private upSvc: UploadServiceProvider,private cartServe:CartService) { 
     this.eatType="veg";
-    this.foodType="staple";
+    this.foodType="staples";
   }
   onFoodChange(newFood)
   {
