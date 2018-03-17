@@ -43,7 +43,9 @@ $colors: (
   twitter:    #1da1f4,
   google:     #f79183,
   vimeo:      #23b6ea,
-  facebook:   #3b5998
+  facebook:   #3b5998,
+  custom1:    #b5b6b7,
+  custom2:    #3d3e3f
 );
 
 
@@ -58,7 +60,7 @@ $colors: (
 // Material Design only Sass variables can go here
 
 // Use the primary color as the background for the toolbar-md-background
-$toolbar-md-background:                   color($colors, danger);
+$toolbar-md-background:                   color($colors, custom2);
 
 // Change the color of the segment button text
 $toolbar-md-active-color:                 #fff;

@@ -4,16 +4,28 @@
 
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>Wheelstracer</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content class="outer-content">
+     
 
-    <ion-list>
-      <ion-list-header>
-        Browse Menu
+    <ion-list style="background-color: rgb(177, 180, 184)">
+      <ion-list-header style=" padding-left: 0px;
+      border-top-width: 0px;
+      margin-bottom: 0px;
+      padding-right: 0px;
+      background-image: url('../assets/img/choice1.jpg');">
+        <div padding-top text-center >
+        
+          <img  src="{{baseUserData.photoUrl}}" alt="avatar" class="side-menu-img">
+        
+          
+        </div>
+        <h2 style="text-align: center;font-family: inherit;font-size: 17pt;color:  azure;"> {{username}}</h2>      
       </ion-list-header> 
+
       <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
         <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
         {{p.title}}
