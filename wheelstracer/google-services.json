@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "771410076911",
+    "firebase_url": "https://prodc-da2cd.firebaseio.com",
+    "project_id": "prodc-da2cd",
+    "storage_bucket": "prodc-da2cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771410076911:android:63fa840778e9f285",
+        "android_client_info": {
+          "package_name": "io.com.wheelstracer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771410076911-i0m6md8qc644h6q8l6vpa974nam6dq1u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.com.wheelstracer",
+            "certificate_hash": "506fb5451aba91e6091d1d8dcc4f27c88774b725"
+          }
+        },
+        {
+          "client_id": "771410076911-e43mcvkch983uljnpeehdje6fh8el9kd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCaBX2U3NT6kaPYBAAjSdueqGu3DRpQqg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771410076911-e43mcvkch983uljnpeehdje6fh8el9kd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

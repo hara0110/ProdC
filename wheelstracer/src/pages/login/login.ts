@@ -12,13 +12,12 @@ import {MenuPage} from '../menu/menu';
 //Custom Add
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { Facebook } from '@ionic-native/facebook';
+
 import {Platform} from 'ionic-angular';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 import {AuthService} from '../../providers/auth-service';
 import { AdminPage } from '../admin/admin';
-
-
 
 
 @Component({
@@ -31,6 +30,7 @@ export class LoginPage {
   facebookUserData :any;
   isCorePlatform=false;
   splash = true;
+  public recaptchaVerifier:firebase.auth.RecaptchaVerifier;
   constructor(private afAuth:AngularFireAuth,
               public toastCtrl: ToastController,
               public facebook:Facebook,
@@ -40,11 +40,14 @@ export class LoginPage {
               public plt: Platform,
               public authServe:AuthService,
               public menu : MenuController,
-              public loadingCtrl: LoadingController,             
+              public loadingCtrl: LoadingController,
+              private fb:Facebook,
+
   ) { 
     if (this.plt.is('core')){
       this.isCorePlatform=true;
     }
+    
     
     this.navCtrl = navCtrl;
     this.userData = userData;
@@ -54,7 +57,66 @@ export class LoginPage {
  
   ionViewDidLoad() {
     setTimeout(() => this.splash = false, 4000);
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
     
+  }
+
+  phoneLogin(phoneNumber: number){
+    const appVerifier = this.recaptchaVerifier;
+    const phoneNumberString = "+91" + phoneNumber;
+    firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
+      .then( confirmationResult => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        let prompt = this.alertCtrl.create({
+        title: 'Enter the Confirmation code',
+        inputs: [{ name: 'confirmationCode', placeholder: 'Confirmation Code' }],
+        buttons: [
+          { text: 'Cancel',
+            handler: data => { console.log('Cancel clicked'+data); }
+          },
+          { text: 'Send',
+            handler: data => {
+              confirmationResult.confirm(data.confirmationCode)
+              .then( (result)=> {
+                 
+                this.submitted = true;
+                this.authServe.login();
+                console.log(result.user);
+                this.userData.loginFromMobile(result.user);
+                let loading = this.loadingCtrl.create({
+                  content: `Please Wait`,
+                  duration: (Math.random() * 1000) + 500
+                });
+                loading.onWillDismiss(() => {
+                  this.navCtrl.setRoot("MenuPage");
+                });
+                loading.present();
+              }).catch((error) =>{
+                console.log(error);
+                // User couldn't sign in (bad verification code?)
+                // ...
+                let toast = this.toastCtrl.create({
+                  message: 'Something Went Wrong!',
+                  duration: 3000
+                });
+                toast.present();
+              });
+            }
+          }
+        ]
+      });
+      prompt.present();
+    })
+    .catch( (error) =>{
+      let toast = this.toastCtrl.create({
+        message: 'Something Went Wrong!',
+        duration: 3000
+      });
+      toast.present();
+      console.log(error);
+    });
+  
   }
 
  
@@ -113,7 +175,22 @@ export class LoginPage {
     
    }  
   else{
-    console.log();
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+  .then((res: FacebookLoginResponse) => {
+    console.log('Logged into Facebook!', res);
+    let loading = this.loadingCtrl.create({
+      content: `Please Wait`,
+      duration: (Math.random() * 1000) + 500
+    });
+    loading.onWillDismiss(() => {
+      this.navCtrl.setRoot("MenuPage");
+    });
+    loading.present();
+  }
+  )
+  .catch(e => console.log('Error logging into Facebook', e));
+
+  this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
   } 
   }
   toAdminPage()

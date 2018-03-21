@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { Upload } from '../../providers/Upload';
 import { UploadServiceProvider } from '../../providers/upload-service';
-import * as _ from "lodash";
+// import * as _ from "lodash";
 import { CartService } from '../../providers/cart.service';
 
 
@@ -19,8 +19,11 @@ import { CartService } from '../../providers/cart.service';
   templateUrl: 'admin.html',
 })
 export class AdminPage {
-
+  
+  fileName:string;
+  dateobj :String;    
   selectedFiles: FileList;
+
   currentUpload: Upload;
   foodItem = {  available: true,
                 category: '',  
@@ -28,7 +31,11 @@ export class AdminPage {
                 image: '',   
                 name:  '',
                 price: '',              
-                stock: ''};
+                stock: '',
+                thaliItems:'',
+              };
+  
+  
   eatTypes() : string[]{
     return ["veg", "nonveg"];
   } 
@@ -36,16 +43,41 @@ export class AdminPage {
   foodTypes(): string[]{
     return ["staples","curry"];
   }
+
+  uploadCategory():string[]{
+    return ["thali","individual"];
+  }
+
+  thaliTypes(): string[]{
+    return ["North_Indian","South_Indian","Odisha","Kerela"];
+  }
   eatType: string ;
   foodType: string ;
+  uploadsCategory: string;
+  thaliUploadType:any ;
+  
   
   constructor(private upSvc: UploadServiceProvider,private cartServe:CartService) { 
     this.eatType="veg";
     this.foodType="staples";
+    this.uploadsCategory=null;
+    this.thaliUploadType=null;
+    this.fileName=null;
+    this.dateobj=new Date().getTime().toString();
   }
   onFoodChange(newFood)
   {
       this.foodType=newFood;
+  }
+
+  onthaliTypesChange(thaliUploadType){
+    this.thaliUploadType=thaliUploadType;
+  }
+
+  onUploadTypeChange(uploadsCategory)
+  {
+    this.uploadsCategory=uploadsCategory;
+
   }
   onEatChange(newEat)
   {
@@ -57,28 +89,38 @@ export class AdminPage {
   }
   logForm()
   {   
-    this.foodItem.image= this.uploadSingle();
+     
+     
+    this.fileName= this.eatType+this.uploadsCategory+this.dateobj;
+    if(this.uploadsCategory=="thali")
+    {
+      this.eatType= this.eatType+"/Regional";
+      this.foodType= this.thaliUploadType;
+    }
+
+    this.foodItem.image= this.fileName;
     this.foodItem.available=true;
     this.foodItem.stock="10";
+    this.uploadSingle();
     console.log(this.foodType);
     this.foodItem.category=this.eatType+this.foodType;
     this.cartServe.addFoodItem(this.foodItem,this.eatType,this.foodType);
     console.log(this.foodItem);
   }
-  uploadSingle():string {
+  uploadSingle() {
     let file = this.selectedFiles.item(0)
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload)
-    return this.currentUpload.file.name.toString();
+    this.upSvc.pushUpload(this.currentUpload,this.fileName);
+   
   }
 
-  uploadMulti() {
-    let files = this.selectedFiles
-    let filesIndex = _.range(files.length)
-    _.each(filesIndex, (idx) => {
-      this.currentUpload = new Upload(files[idx]);
-      this.upSvc.pushUpload(this.currentUpload)}
-    )
-  }
+  // uploadMulti() {
+  //   let files = this.selectedFiles
+  //   let filesIndex = _.range(files.length)
+  //   _.each(filesIndex, (idx) => {
+  //     this.currentUpload = new Upload(files[idx]);
+  //     this.upSvc.pushUpload(this.currentUpload,this.eatType)}
+  //   )
+  // }
 
 }

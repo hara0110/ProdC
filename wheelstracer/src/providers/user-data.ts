@@ -12,7 +12,7 @@ export class UserData {
   _favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
-  baseUserData  = { displayName:"" ,email:"",photoUrl:"",password:""};
+  baseUserData  = { displayName:"" ,email:"",photoUrl:"",password:"",phoneNumber:""};
 
   constructor(
     public events: Events,
@@ -59,6 +59,17 @@ export class UserData {
     this.events.publish('user:login');
   }
 
+  loginFromMobile(mobileUserData:any){
+    this.baseUserData.email="";
+    this.baseUserData.displayName="";
+    this.baseUserData.photoUrl="";
+    this.baseUserData.phoneNumber=mobileUserData.phoneNumber;
+    this.storage.set(this.HAS_LOGGED_IN, true);
+    this.setUsername("New User");
+    this.commitBaseUserToDb();    
+    this.events.publish('user:login');
+  }
+
   signup(signup: any): void {       
     this.setUsername(signup.username);
     this.baseUserData.email=signup.username;
@@ -77,7 +88,7 @@ export class UserData {
         email: this.baseUserData.email,
         photoUrl:this.baseUserData.photoUrl,
         password:this.baseUserData.password,  
-        mytest:"Hello World"  
+        phoneNumber:this.baseUserData.phoneNumber,
       }
     );
   }

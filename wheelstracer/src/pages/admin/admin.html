@@ -30,18 +30,37 @@
           <ion-input [(ngModel)]="foodItem.price" name="price" type="number"  required>
           </ion-input>
         </ion-item>
-    <ion-item>
+    <ion-item  >
+      <ion-label stacked color="primary">Upload Type</ion-label>
+      <ion-select [ngModel]="uploadsCategory" (ngModelChange)="onUploadTypeChange($event)" name="sel23" style="padding-left: 0px;padding-right: 2px;">
+        <ion-option *ngFor="let b of uploadCategory()">{{b}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item  *ngIf="uploadsCategory!=null">
       <ion-label stacked color="primary">Veg/NonVeg</ion-label>
       <ion-select [ngModel]="eatType" (ngModelChange)="onEatChange($event)" name="sel23" style="padding-left: 0px;padding-right: 2px;">
         <ion-option *ngFor="let i of eatTypes()">{{i}}</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="uploadsCategory=='individual'">
       <ion-label stacked color="primary">Curry/Staple</ion-label>
       <ion-select [ngModel]="foodType" (ngModelChange)="onFoodChange($event)" name="sel2" style="padding-left: 0px;padding-right: 2px;">
         <ion-option *ngFor="let j of foodTypes()">{{j}}</ion-option>
       </ion-select>
-    </ion-item>   
+    </ion-item> 
+    <ion-item  *ngIf="uploadsCategory=='thali'">
+      <ion-label stacked color="primary">Thali Type</ion-label>
+      <ion-select [ngModel]="thaliUploadType" (ngModelChange)="onthaliTypesChange($event)" name="sel45" style="padding-left: 0px;padding-right: 2px;">
+        <ion-option *ngFor="let k of thaliTypes()">{{k}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item  *ngIf="uploadsCategory=='thali'">
+      <ion-label stacked color="primary">Thali Items</ion-label>
+      <ion-input [(ngModel)]="foodItem.thaliItems" name="Thali Items" type="text"  required>
+      </ion-input>
+      
+    </ion-item>
+
     <ion-item> <div *ngIf="currentUpload">
         <div class="progress">
           <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>

@@ -19,9 +19,9 @@ export class UploadServiceProvider {
   private basePath:string = '/assets/img/';
   uploads: FirebaseListObservable<Upload[]>;
 
-  pushUpload(upload: Upload) {
+  pushUpload(upload: Upload,fileName:string ) {
     let storageRef = firebase.storage().ref();
-    let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+    let uploadTask = storageRef.child(`${this.basePath}/${fileName}`).put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       () =>  {  // upload in progress 

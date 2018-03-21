@@ -23,7 +23,6 @@ export class FoodmenuPage {
   nvCurry: FirebaseListObservable<any[]>;
   vCurry: FirebaseListObservable<any[]>;
   nvStaple: FirebaseListObservable<any[]>;
-  // vStaple:FirebaseListObservable<any[]>;
   vStaple: any;
   stapleLoader:FirebaseListObservable<any[]>;
   curryLoader:FirebaseListObservable<any[]>;
