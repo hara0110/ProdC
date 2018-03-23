@@ -18,6 +18,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 import {AuthService} from '../../providers/auth-service';
 import { AdminPage } from '../admin/admin';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class LoginPage {
               public menu : MenuController,
               public loadingCtrl: LoadingController,
               private fb:Facebook,
+              public storage:Storage
 
   ) { 
     if (this.plt.is('core')){
@@ -60,7 +62,13 @@ export class LoginPage {
     this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
     
   }
-
+  ionViewDidEnter(){
+   this.storage.get('userid').then(
+     (res)=>{
+       if(res=="yes")
+       this.navCtrl.setRoot(MenuPage)}
+   );
+  }
   phoneLogin(phoneNumber: number){
     const appVerifier = this.recaptchaVerifier;
     const phoneNumberString = "+91" + phoneNumber;
@@ -160,6 +168,7 @@ export class LoginPage {
       res=>{
       this.submitted = true;
       this.authServe.login();
+      this.storage.set("userid","yes");
       this.userData.loginFromFacebook(res);
       let loading = this.loadingCtrl.create({
         content: `Please Wait`,
@@ -178,6 +187,9 @@ export class LoginPage {
     this.fb.login(['public_profile', 'user_friends', 'email'])
   .then((res: FacebookLoginResponse) => {
     console.log('Logged into Facebook!', res);
+    this.submitted = true;
+    this.authServe.login();
+    this.userData.loginFromFacebook(res);
     let loading = this.loadingCtrl.create({
       content: `Please Wait`,
       duration: (Math.random() * 1000) + 500

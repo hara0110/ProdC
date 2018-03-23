@@ -35,6 +35,9 @@
     "angularfire2": "^5.0.0-rc.6",
     "cordova-android": "7.0.0",
     "cordova-ios": "^4.5.2",
+    "cordova-plugin-browsertab": "^0.2.0",
+    "cordova-plugin-buildinfo": "^2.0.1",
+    "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-crosswalk-webview": "^2.4.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-facebook4": "git+https://github.com/amritk/cordova-plugin-facebook4.git",
@@ -60,15 +63,10 @@
     "ionic_aot_write_to_disk": true
   },
   "cordova": {
-    "platforms": [],
+    "platforms": [
+      "android"
+    ],
     "plugins": {
-      "cordova-plugin-crosswalk-webview": {
-        "XWALK_VERSION": "22+",
-        "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-        "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-        "XWALK_MODE": "embedded",
-        "XWALK_MULTIPLEAPK": "true"
-      },
       "cordova-plugin-device": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-splashscreen": {},
@@ -80,7 +78,9 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "354815164984948",
         "APP_NAME": "Wheelstracer"
-      }
+      },
+      "cordova-plugin-buildinfo": {},
+      "cordova-plugin-browsertab": {}
     }
   }
 }

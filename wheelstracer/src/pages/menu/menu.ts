@@ -118,6 +118,7 @@ export class MenuPage {
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.userData.logout();
+      this.storage.set("userid","no");
       this.navCtrl.setRoot("LoginPage");
     }
   }
