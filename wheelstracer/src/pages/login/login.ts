@@ -188,8 +188,14 @@ export class LoginPage {
   .then((res: FacebookLoginResponse) => {
     console.log('Logged into Facebook!', res);
     this.submitted = true;
-    this.authServe.login();
-    this.userData.loginFromFacebook(res);
+    //this.authServe.login();
+   // this.userData.loginFromFacebook(res);
+    let toast = this.toastCtrl.create({
+      message: 'logged in!',
+      duration: 8000
+    });
+    toast.present();
+   
     let loading = this.loadingCtrl.create({
       content: `Please Wait`,
       duration: (Math.random() * 1000) + 500
@@ -200,7 +206,17 @@ export class LoginPage {
     loading.present();
   }
   )
-  .catch(e => console.log('Error logging into Facebook', e));
+  .catch(e =>{ console.log('Error logging into Facebook', e)
+
+  let toast = this.toastCtrl.create({
+    message: 'Something Went Wrong!',
+    duration: 8000
+  });
+  toast.present();
+
+}
+    
+);
 
   this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
   } 
