@@ -1,7 +1,7 @@
 {
   "name": "wheelstracer",
   "version": "0.0.1",
-  "description": "An Ionic project",
+  "description": "An Wheelstracer project",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -33,7 +33,6 @@
     "@ionic/pro": "1.0.17",
     "@ionic/storage": "2.1.3",
     "angularfire2": "^5.0.0-rc.6",
-    "com.appodeal.plugin": "^2.1.1",
     "cordova-android": "7.0.0",
     "cordova-ios": "^4.5.2",
     "cordova-plugin-crosswalk-webview": "^2.4.0",

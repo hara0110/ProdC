@@ -2,7 +2,13 @@
 // Login, Signup, Support
 
 page-user {
-
+.logoImg{
+   margin: auto;
+    width: 50%;
+    
+   
+  
+}
   
     
     .location {
@@ -34,19 +40,7 @@ page-user {
 		background: rgba(255, 255, 255, 0.363);
 		border-radius: 5px;
   }
-  .demoFont {
-    font-family: "Arial Black", Gadget, sans-serif;
-    font-size: 34px;
-    letter-spacing: -4px;
-    word-spacing: -0.4px;
-    color: #2FB509;
-    font-weight: 700;
-    text-decoration: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    }
-
+  
 	a, p,
 	ion-card-header.card-header {
     color: rgb(44, 1, 1)!important;
