@@ -8,7 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.template.html'
 })
 export class WheelsTracerApp implements OnInit{
-  rootPage:any = 'LoginPage';
+  rootPage:any = 'SgPage';
 
   @ViewChild(Nav)
   public nav: Nav;

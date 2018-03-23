@@ -30,6 +30,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 import {UsercartPage} from '../pages/usercart/usercart';
 import {CheckoutPage} from '../pages/checkout/checkout';
+import {SgPage} from '../pages/sg/sg';
 
 import {AngularFireDatabase} from 'angularfire2/database-deprecated';
 import { ConferenceData } from '../providers/conference-data';
@@ -72,6 +73,7 @@ import { UploadServiceProvider } from '../providers/upload-service';
     CheckoutPage,
     RegionalfoodPage,
     AdminPage,
+    SgPage,
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { UploadServiceProvider } from '../providers/upload-service';
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },
         { component: MenuPage, name: 'MenuPage', segment: 'menu-page' },
-        { component: FoodmenuPage, name: 'FoodmenuPage', segment: 'page-foodmenu' }
+        { component: FoodmenuPage, name: 'FoodmenuPage', segment: 'page-foodmenu' },
+        { component: SgPage, name: 'SgPage', segment: 'page-sg' },
         
       ]
     }),
@@ -132,6 +135,7 @@ import { UploadServiceProvider } from '../providers/upload-service';
     CheckoutPage,
     RegionalfoodPage, 
     AdminPage, 
+    SgPage,
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

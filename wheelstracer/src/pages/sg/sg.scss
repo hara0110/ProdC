@@ -1,0 +1,45 @@
+page-sg {
+    .background {
+        background-image: url('../../assets/img/select1.jpg'); 
+         background-size: auto 100%;
+      //background: url(http://igoffice.m360.co.uk/wp-content/uploads/2016/08/paul-expert-header.jpg) center;
+        //  background-repeat:no-repeat;
+        //  background-size:contain;
+         
+        // background: -webkit-linear-gradient(-45deg, rgba(173,17,0,1) 0%, rgba(214,24,3,1) 49%, rgba(250,70,50,1) 84%, rgba(255,30,0,1) 100%);
+          }
+          .demoFont {
+            font-family: "Arial Black", Gadget, sans-serif;
+            font-size: 34px;
+            letter-spacing: -4px;
+            word-spacing: -0.4px;
+            color: #2FB509;
+            font-weight: 700;
+            text-decoration: none;
+            font-style: normal;
+            font-variant: normal;
+            text-transform: none;
+            }
+          
+          .location {
+            font-size: 12pt;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            border: 1px solid rgb(141, 141, 141);
+          }
+          .center {
+            margin: auto;
+            width: 60%;
+            border: 1px solid #73AD21;
+            padding: 10px;
+        }
+        .center-card {
+          margin: auto;
+          width: 100%;
+          padding: 10px;
+      }
+      ion-card.card {
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.685);
+        border-radius: 5px;
+      }
+}
